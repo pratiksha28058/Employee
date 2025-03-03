@@ -13,7 +13,7 @@ print(pd.__version__)
 # Set GitHub Token and Repository Details
 GITHUB_TOKEN = "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"  # Set as an environment variable
 OWNER = "pratiksha28058"  # Replace with the GitHub organization or username
-REPO = "EmployeeServices"           # Replace with the repository name
+REPO = "Employee"           # Replace with the repository name
 API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/code-scanning/alerts"
 
 # Flask Server for Dash
