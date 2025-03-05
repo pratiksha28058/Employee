@@ -1,0 +1,5 @@
+"homepage": "https://pratiksha28058.github.io/YOUR_REPO_NAME",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
