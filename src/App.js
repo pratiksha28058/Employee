@@ -1,80 +1,54 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BarChart, Bar, PieChart, Pie, Tooltip, XAxis, YAxis, Legend, ResponsiveContainer } from "recharts";
+import React, { useEffect, useState } from 'react';
 
-const GITHUB_TOKEN = "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";  // Replace with your GitHub PAT
-const ORG_NAME = "Employee";  // Replace with your GitHub org name
-
-const SecurityDashboard = () => {
-  const [securityData, setSecurityData] = useState([]);
 
   useEffect(() => {
-    const fetchSecurityAlerts = async () => {
+    const fetchAlerts = async () => {
       try {
-        const response = await axios.get(
-          `https://api.github.com/orgs/${ORG_NAME}/security-advisories`,
-          {
-            headers: { Authorization: `token ${GITHUB_TOKEN}` }
-          }
-        );
+        const response = await fetch('https://api.github.com/repos/pratiksha28058/Employee/dependabot/alerts', {
+          headers: {
+            Authorization: `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`,
+            Accept: 'application/vnd.github+json',
+          },
+        });
 
-        const formattedData = response.data.map(alert => ({
-          id: alert.id,
-          severity: alert.severity,
-          type: alert.type,
-        }));
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
 
-        setSecurityData(formattedData);
-      } catch (error) {
-        console.error("Error fetching security alerts:", error);
+        const data = await response.json();
+        setAlerts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchSecurityAlerts();
+    fetchAlerts();
   }, []);
 
-  const severityCount = securityData.reduce((acc, alert) => {
-    acc[alert.severity] = (acc[alert.severity] || 0) + 1;
-    return acc;
-  }, {});
-
-  const chartData = Object.keys(severityCount).map((key) => ({
-    severity: key,
-    count: severityCount[key],
-  }));
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold text-center mb-6">GitHub Security Overview</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Bar Chart */}
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Security Issues by Severity</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={chartData}>
-              <XAxis dataKey="severity" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="count" fill="#f56565" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Pie Chart */}
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Security Issues Distribution</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie data={chartData} dataKey="count" nameKey="severity" cx="50%" cy="50%" outerRadius={80} fill="#3182ce" label />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+    <div>
+      <h1>Security Overview</h1>
+      {alerts.length === 0 ? (
+        <p>No security alerts found.</p>
+      ) : (
+        <ul>
+          {alerts.map(alert => (
+            <li key={alert.id}>
+              <strong>{alert.security_advisory.summary}</strong> - {alert.state}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
-export default SecurityDashboard;
+export default SecurityOverview;
