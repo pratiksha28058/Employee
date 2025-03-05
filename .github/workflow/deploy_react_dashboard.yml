@@ -1,4 +1,4 @@
-name: Deploy React Security Dashboard
+name: Deploy React Security Dashboard1
 
 on:
   push:
