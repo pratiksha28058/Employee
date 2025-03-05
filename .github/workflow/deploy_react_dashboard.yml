@@ -1,12 +1,12 @@
-name: Deploy React App to GitHub Pages
+name: Deploy React Security Dashboard
 
 on:
   push:
     branches:
-      - main  # Runs when you push changes to the main branch
+      - main  # Runs when you push to the main branch
 
 permissions:
-  contents: write  # Required for GitHub Pages
+  contents: write
 
 jobs:
   deploy:
