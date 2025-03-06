@@ -10,7 +10,7 @@ const SecurityOverview = () => {
       try {
         const response = await fetch('https://api.github.com/repos/pratiksha28058/Employee/dependabot/alerts', {
           headers: {
-            Authorization: `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`,
+            Authorization: `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`,
             Accept: 'application/vnd.github+json',
           },
         });
