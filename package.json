@@ -1,0 +1,58 @@
+{
+<<<<<<< HEAD
+  "name": "my-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://pratiksha28058.github.io/Employee",
+  "dependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+=======
+  "name": "employee-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://pratiksha28058.github.io/Employee",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.1",
+    "axios": "^1.0.0",
+    "recharts": "^2.1.10"
+>>>>>>> ca889aac8a79757a4bad31e1ba5cb8437a9da8c3
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+<<<<<<< HEAD
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+=======
+>>>>>>> ca889aac8a79757a4bad31e1ba5cb8437a9da8c3
+  }
+}
