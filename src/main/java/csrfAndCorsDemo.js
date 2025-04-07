@@ -30,6 +30,7 @@ app.post("/insecure-transfer", (req, res) => {
 
     // Perform a money transfer without any CSRF protection
     console.log(`Transferring ${amount} to ${recipient}`);
+    console.log(`Transferring ${amount} to ${recipient}`);
     res.status(200).send("Transfer completed.");
 });
 
