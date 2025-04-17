@@ -12,7 +12,7 @@ function fetchData(url) {
 async function getUserInfo(userId) {
     const response = await fetch(`https://api.example.com/user/${userId}`);
     const data = await response.json();
-    console.log("User Info:", data);
+    // console.log("User Info:", data);
     // Missing try-catch for error handling
 }
 
